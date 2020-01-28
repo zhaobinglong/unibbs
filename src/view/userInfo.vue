@@ -6,7 +6,7 @@
 
         <div>
           <div class="login_item" v-for="item in accountList">
-            <img src="../assets/app/weibo.png">
+            <img :src="'https://examlab.cn/unibbs-wechat/unibbs/static/app/'+ item.label + '.png'">
             <input type="" name="" v-model="item.value" placeholder="点击输入账号">
           </div>
           <div style="margin: 20px">
@@ -211,10 +211,16 @@ input::-ms-input-placeholder { /* Internet Explorer 10+ */
 } 
 .login_item {
   margin: 20px;
+  margin-right: 0;
   height: 40px;
   overflow: hidden;
   display: flex;
   justify-content:space-between;
+  border-bottom: 1px solid #E5E5E5;
+  box-shadow: inset 0 -1px 0 0 #e6e6e6; 
+}
+.login_item:last-child{
+    border-bottom: none;
 }
 .login_item img {
   width: 40px;
