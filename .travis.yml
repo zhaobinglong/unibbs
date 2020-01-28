@@ -1,0 +1,40 @@
+language: node_js
+node_js:
+- 10.16.0
+cache:
+  directories:
+  - node_modules
+install:
+- npm install
+before_script: 
+script:
+- npm run build
+after_script: 
+  - cd ./dist
+  - git init
+  - git config user.name "travis ci"
+  - git config user.email "570869214@qq.com"
+  - git add .
+  - git commit -m "Travis CI Auto Builder"
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:deploy
+  - ssh root@119.23.60.250 'cd /home/wwwroot/default/bird && git fetch --all && git reset --hard origin/deploy && git pull'
+
+after_success:
+
+
+branches:
+  only:
+  - master
+env:
+  global:
+  - GH_TOKEN: zhaobinglong:zbl15101056160
+  - GH_REF: github.com/zhaobinglong/bird.git
+  - U_NAME: zhaobinglong
+  - U_EMAIL: 570869214@qq.com
+before_install:
+- openssl aes-256-cbc -K $encrypted_d3c25c1810a6_key -iv $encrypted_d3c25c1810a6_iv
+  -in id_rsa.enc -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+
+addons:
+  ssh_known_hosts: 119.23.60.250

@@ -1,0 +1,46 @@
+
+.upload-pictures {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding: 10px;
+  &:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+    width: 30%;
+  }
+
+  .upload-picture-item:after {
+    content: '';
+    display: block;
+    margin-top: 100%; 
+    overflow: hidden;
+  }
+  .add {
+    // box-shadow: 0 0 0px 2px #efefef inset
+    border: 2px dashed #efefef
+  }
+  .upi {
+    width: 30%;
+    margin-bottom: 30rpx;
+    position: relative;
+    .image {
+      width: 100%; 
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    image.delete {
+      position: absolute;
+      top: -10rpx;
+      right: -10rpx;
+      width: 40rpx;
+      height: 40rpx;
+    }
+  }
+}

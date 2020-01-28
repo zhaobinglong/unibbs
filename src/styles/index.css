@@ -1,0 +1,158 @@
+
+.push {
+  padding-bottom: 50px;
+}
+.upload {
+  position: relative;
+}
+.icon_upload {
+  width: 80px;
+  height: 80px;
+}
+
+.icon_upload {
+  width: 80px;
+  height: 80px;
+}
+.icon_bell{
+  width: 60px;
+  height: 60px;
+  display: block;
+}
+.bell_box{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  bottom: 100px;
+  left: 50%;
+  transform:translateX(-50%);
+  z-index: 499;
+}
+.bell_box img {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+}
+.file-selector {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+}
+
+#container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0
+}
+
+.search_box {
+  position: absolute;
+  background-color: #FFF;
+  display: flex;
+  flex-wrap: nowrap;
+  left: 40px;
+  right: 40px;
+  height: 40px;
+  line-height: 40px;
+  top: 40px;
+  padding: 0 10px;
+}
+.search_session {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  background-color: #FFF
+}
+
+.session_item {
+    border-bottom: 1px solid #E5E5E5;
+    padding: 0 10px;
+}
+
+.session_item:last-child{
+    border-bottom: none;
+}
+
+
+/*销售注册和二维码查看页面*/
+.seller {
+  background: rgb(253,213,94);
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content:center 
+}
+
+.qrcode_wrap{
+  position: relative;
+}
+.qrcode {
+  position: absolute;
+  top: 81.5%;
+  left: 50%;
+  transform:translate(-50%);
+
+/*  width: 30%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  margin-top: 70%;*/
+}
+.qrcode_bk {
+  width: 100%;
+}
+
+
+
+.login {
+  background: #83c7d4;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center
+}
+.login_cont {
+
+}
+.login_cont .logo {
+  background-color: #FFF;
+  border-radius: 50%;
+  padding: 20px;
+  margin: 0 auto;
+}
+.login_cont .logo img {
+  width: 100%;
+  height: auto;
+}
+.login_rule {
+  margin: 0 20px 4px;
+  color: #FFF
+}
+
+
+/*通用*/
+.max_line_2 {
+display: -webkit-box;
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+overflow: hidden;
+
+}
