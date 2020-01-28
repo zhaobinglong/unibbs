@@ -25,6 +25,10 @@ Vue.prototype.$axios = Axios;
 // import vueEventCalendar from './components/vueEventCalendar'
 // Vue.use(vueEventCalendar, {locale: 'zh'})
 
+// 全局loading自定义组件
+import Vue from 'vue'
+import loading from './components/loading/loading'
+Vue.use(loading)
 
 // 视频组件
 // import VueVideoPlayer from 'vue-video-player'

@@ -5,29 +5,10 @@
         <!-- <div class='logo' style="margin-top: 0"> <img src="" alt="" ></div> -->
 
         <div>
-          <h1></h1>
-          <div class="login_item">
+          <div class="login_item" v-for="item in accountList">
             <img src="../assets/app/weibo.png">
-            <input type="" name="" v-model="form.weibo" placeholder="输入微博账号">
+            <input type="" name="" v-model="item.value" placeholder="点击输入账号">
           </div>
-          <div class="login_item">
-            <img src="../assets/app/zhihu.png">
-            <input type="" name="" v-model="form.zhihu" placeholder="输入知乎账号">
-          </div>
-          <div class="login_item">
-            <img src="../assets/app/douyin.png">
-            <input type="" name="" v-model="form.douyin" placeholder="输入抖音账号">
-          </div>
-          <div class="login_item">
-            <img src="../assets/app/weixin.png">
-            <input type="" name="" v-model="form.weixin" placeholder="输入微信账号">
-          </div>
-<!--           <div class="login_item">
-            <input type="" name="" v-model="form.kuaishou" placeholder="输入快手账号">
-          </div>
-          <div class="login_item">
-            <input type="" name="" v-model="form.wangyi" placeholder="输入网易云音乐账号">
-          </div> -->
           <div style="margin: 20px">
             <img src="../assets/app/qrcode.jpg" style="width: 60px; height:60px">
             <span style="font-size: 12px;">长按识别二维码，一键生成社交名片</span>
@@ -38,19 +19,18 @@
 
     </div>
     <div  class="qrcode_down_wrap" v-if="show_down_load">
-      <!-- <p>长按图片保存到相册</p> -->
+      <p>长按图片保存到相册</p>
       <img :src="qrcode" style="width: 80%">
       <!-- <ButtonFooter @clickHandle="clickDown" text="长按图片保存到手机" /> -->
     </div>
+    <!-- <loading ></loading> -->
   </div>
 </template>
 
 <script>
 import { sellerRegister, getShareImg } from '@/api/index'
-import { EventBus } from "../bus/event-bus.js";
 import ButtonFooter from '@/components/buttonFooter'
 import html2canvas from "html2canvas"
-import QRCode from 'qrcodejs2'  // 引入qrcode
 export default {
   components: {
     ButtonFooter
@@ -65,11 +45,32 @@ export default {
           kuaishou: '',
           wangyi: ''
         },
-        qrcode: '',
-        sign: {},
-        genders:  [['男', '女']],
-        toast: false,
-        qq: null,
+        accountList: [
+          {
+            'name': '微博',
+            'label': 'weibo',
+            'value': '',
+            'hidden': false
+          },
+          {
+            'name': '微信',
+            'label': 'weixin',
+            'value': '',
+            'hidden': false
+          },
+          {
+            'name': '豆瓣',
+            'label': 'douban',
+            'value': '',
+            'hidden': false
+          },
+          {
+            'name': '豆瓣',
+            'label': 'douban',
+            'value': '',
+            'hidden': false
+          },
+        ],
         show_form: true,
         show_qrcode: false,
         show_down_load: false
@@ -99,21 +100,6 @@ export default {
        type: 'text'
       })
     },
-
-    // 利用插生成二维码
-    // makeQrcode(url) {
-    //   this.show_qrcode = true
-    //   setTimeout(() => {
-    //     let qrcode = new QRCode('qrcode', {
-    //       width: 80,  
-    //       height: 80,
-    //       text: url, // 二维码地址
-    //       colorDark : "#000",
-    //       colorLight : "#fff",
-    //     })
-    //     this.downLoad()
-    //   }, 200)
-    // },
     
     // 使用canvas生成base64图片显示出来
     downLoad() {
@@ -170,28 +156,9 @@ export default {
             return (window.devicePixelRatio || 1) / backingStore;
     },
 
-    // 检查信息
+    // 检查信息，如果有没输入的，则隐藏
     checkQrcode() {
       this.downLoad()
-      return false
-      // this.show_form = false
-      // this.$vux.loading.show({
-      //  text: '生成中···'
-      // })
-
-      // Sentry.setExtra('data', this.form)
-      // Sentry.captureMessage('查询二维码','info');
-      localStorage.setItem('userAccounts', JSON.stringify(this.form))
-      
-      this.form.stamp = new Date().getTime();
-
-      getShareImg(this.form).then(data => { 
-        console.log(data)
-        this.qrcode = data
-        this.show_form = false
-        this.show_down_load = true
-        this.$vux.loading.hide()
-      })
    },
   },
 
@@ -214,7 +181,7 @@ export default {
 .qrcode_down_wrap {
   height: 100vh;
   display: flex;
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0,0,0,.5);
   align-items: center;
    justify-content: center
 }
