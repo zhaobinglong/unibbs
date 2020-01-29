@@ -35,10 +35,10 @@ Vue.use(loading)
 // Vue.use(VueVideoPlayer)
 
 // 引入第三方JS错误记录
-import * as fundebug from "fundebug-javascript";
-import fundebugVue from "fundebug-vue";
-fundebug.apikey = "63f52b3f806f7a2fc33750965fedde5dee9a3225c22e8523ef031c17f02128fd"
-fundebugVue(fundebug, Vue);
+// import * as fundebug from "fundebug-javascript";
+// import fundebugVue from "fundebug-vue";
+// fundebug.apikey = "63f52b3f806f7a2fc33750965fedde5dee9a3225c22e8523ef031c17f02128fd"
+// fundebugVue(fundebug, Vue);
 
 
 // 使用sentry进行全局日志监控，sentry是免费的日志监控平台
@@ -50,8 +50,11 @@ fundebugVue(fundebug, Vue);
 //     .install();
 
 import * as Sentry from '@sentry/browser';
-Sentry.init({ dsn: 'https://d39230ff9b2e4b57ad1439f5a4b0cec9@sentry.io/1725188' });
-
+import * as Integrations from '@sentry/integrations';
+Sentry.init({
+  dsn: 'https://48b1a394ed81493d9bf784afaecdc894@sentry.io/2069250',
+  integrations: [new Integrations.Vue({Vue, attachProps: true})],
+});
 
 import '@/assets/iconfont/iconfont.css';
 import '@/assets/iconfont/iconfont.js';

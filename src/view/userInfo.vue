@@ -3,7 +3,7 @@
     <!-- 第一页：输入信息 -->
     <div  v-if="show_form" >
       <div class="login_cont" ref="QRcodeSrcImg" v-bind:class="{'bk_yellow': show_down_load}">
-        <h1 v-if="show_down_load">来互粉吧</h1>
+        <h1 v-if="show_down_load">开启云社交</h1>
         <!-- 账户列表 -->
         <div class="login_item" v-for="item in accountList" v-if="!item.hidden">
           <img :src="'https://examlab.cn/unibbs-wechat/unibbs/static/app/'+ item.label + '.png'" v-bind:class="{'img_second': show_down_load}">
@@ -141,10 +141,6 @@ export default {
     // 使用canvas生成base64图片显示出来
     downLoad() {
       let _this = this;
-      // this.show_down_load = true
-      // this.show_qrcode = false
-      // this.$vux.loading.hide()
-      // 声明一个画布元素,存储需下载图片范围
       
       // 获取需下载范围元素
       let img = this.$refs["QRcodeSrcImg"];
@@ -152,13 +148,9 @@ export default {
       var w = img.offsetWidth;
       // 图片宽度
       var h = img.offsetHeight
-      console.log(w)
-      console.log(h)
-      // 声明画布宽高
       let canvas = document.createElement("canvas");
       let context = canvas.getContext("2d");
       let scale = parseInt(this.getPixelRatio(context)); 
-      console.log(scale)
       canvas.width = w * scale
       canvas.height = h * scale
       canvas.style.width = w + "px";
@@ -173,7 +165,7 @@ export default {
             height: h,
             dpi: window.devicePixelRatio,
             useCORS: true, // 【重要】开启跨域配置
-            allowTaint: true,//允许跨域图片
+            allowTaint: false,//允许跨域图片
       }
       html2canvas(img,opts).then(function(canvas) {
         _this.qrcode = canvas.toDataURL('image/png', 0)
@@ -184,13 +176,13 @@ export default {
     
     // 获取设备的PixelRatio
     getPixelRatio(context) {     
-            var backingStore = context.backingStorePixelRatio ||
-                context.webkitBackingStorePixelRatio ||
-                context.mozBackingStorePixelRatio ||
-                context.msBackingStorePixelRatio ||
-                context.oBackingStorePixelRatio ||
-                context.backingStorePixelRatio || 1;
-            return (window.devicePixelRatio || 1) / backingStore;
+      var backingStore = context.backingStorePixelRatio ||
+          context.webkitBackingStorePixelRatio ||
+          context.mozBackingStorePixelRatio ||
+          context.msBackingStorePixelRatio ||
+          context.oBackingStorePixelRatio ||
+          context.backingStorePixelRatio || 1;
+      return (window.devicePixelRatio || 1) / backingStore;
     },
 
     // 检查信息，如果有没输入的，则隐藏
@@ -205,7 +197,7 @@ export default {
       window.scrollTo(0,0);
       setTimeout(res => {
         this.downLoad()
-      }, 500);
+      }, 1000);
       
    },
   },
