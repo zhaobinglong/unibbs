@@ -14011,7 +14011,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'value': '',
         'hidden': false
       }, {
-        'name': '网易',
+        'name': '网易云音乐',
         'label': 'wangyi',
         'value': '',
         'hidden': false
@@ -14034,7 +14034,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       // },
 
       {
-        'name': 'instagram',
+        'name': 'Instagram',
         'label': 'ins',
         'value': '',
         'hidden': false
@@ -16793,13 +16793,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         "src": 'https://examlab.cn/unibbs-wechat/unibbs/static/app/' + item.label + '.png'
       }
     }), _vm._v(" "), _c('div', {
+      staticClass: "login_item_right",
       staticStyle: {
         "flex-grow": "1"
       }
-    }, [(!_vm.show_down_load) ? _c('p', {
+    }, [(!_vm.show_down_load) ? _c('label', {
       staticStyle: {
         "color": "#303030",
-        "font-size": "18px"
+        "font-size": "18px",
+        "width": "100%"
+      },
+      attrs: {
+        "for": item.label
       }
     }, [_vm._v(_vm._s(item.name))]) : _vm._e(), _vm._v(" "), _c('input', {
       directives: [{
@@ -16811,7 +16816,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "type": "",
         "name": "",
-        "placeholder": "点击输入账号"
+        "placeholder": "点击输入账号",
+        "id": item.label
       },
       domProps: {
         "value": (item.value)
@@ -16852,7 +16858,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }, [_vm._v("生成分享图片")])])]) : _vm._e(), _vm._v(" "), (_vm.show_down_load) ? _c('div', {
     staticClass: "qrcode_down_wrap"
-  }, [_c('p', [_vm._v("长按图片保存到相册")]), _vm._v(" "), _c('img', {
+  }, [_c('p', [_vm._v("长按图片保存，分享至朋友圈")]), _vm._v(" "), _c('img', {
     staticStyle: {
       "width": "80%",
       "border-radius": "8px"
@@ -22382,4 +22388,4 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
 
 /***/ })
 ]),[1027]);
-//# sourceMappingURL=app.425aa093a43a7ae0f197.js.map
+//# sourceMappingURL=app.0ad4ac81e877e48dc96b.js.map

@@ -7,9 +7,9 @@
         <!-- 账户列表 -->
         <div class="login_item" v-for="item in accountList" v-if="!item.hidden">
           <img :src="'https://examlab.cn/unibbs-wechat/unibbs/static/app/'+ item.label + '.png'" v-bind:class="{'img_second': show_down_load}">
-          <div style="flex-grow: 1">
-            <p style="color: #303030; font-size: 18px;" v-if="!show_down_load">{{ item.name }}</p>
-            <input type="" name="" v-model="item.value" placeholder="点击输入账号">
+          <div style="flex-grow: 1" class="login_item_right">
+            <label :for=item.label style="color: #303030; font-size: 18px; width: 100%" v-if="!show_down_load">{{ item.name }}</label>
+            <input type="" name="" v-model="item.value" placeholder="点击输入账号" :id=item.label>
           </div>
         </div>
         <!-- 底部公众号 -->
@@ -28,7 +28,7 @@
 
     <!-- 第二页：保存图片 -->
     <div  class="qrcode_down_wrap" v-if="show_down_load">
-      <p>长按图片保存到相册</p>
+      <p>长按图片保存，分享至朋友圈</p>
       <img :src="qrcode" style="width: 80%; border-radius: 8px">
       <!-- <ButtonFooter @clickHandle="clickDown" text="长按图片保存到手机" /> -->
     </div>
@@ -73,7 +73,7 @@ export default {
             'hidden': false
           },
           {
-            'name': '网易',
+            'name': '网易云音乐',
             'label': 'wangyi',
             'value': '',
             'hidden': false
@@ -98,7 +98,7 @@ export default {
           // },
 
           {
-            'name': 'instagram',
+            'name': 'Instagram',
             'label': 'ins',
             'value': '',
             'hidden': false
@@ -276,6 +276,12 @@ input::-webkit-input-placeholder { /* WebKit browsers */
 }
 .login_item:last-child{
     border-bottom: none;
+}
+.login_item_right {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-items: left;
 }
 .login_item img {
   width: 50px;
