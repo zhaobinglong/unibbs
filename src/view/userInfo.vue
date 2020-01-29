@@ -15,13 +15,13 @@
         <!-- 底部公众号 -->
         <div style="margin: 20px; text-align: right; padding-bottom: 24px;" class="share_bottom" v-if="show_down_load">
           <div class="share_bottom_left_">
-            <p style="font-size: 12px;">长按识别</p>
-            <p>前往公众号</p>
+            <p>长按识别前往公众号</p>
+            <p>一键生成你的社交名片</p>
           </div>
           <img src="../assets/app/qrcode.jpg" style="width: 60px; height:60px">
         </div>
       </div>
-      <div style="padding: 56px 80px">
+      <div style="padding: 28px 80px 56px 80px">
         <span href="javascript:;" class="weui-btn weui-btn_primary" @click="checkQrcode">生成分享图片</span>
       </div>
     </div>
@@ -90,12 +90,12 @@ export default {
             'value': '',
             'hidden': false
           },
-          {
-            'name': '微信',
-            'label': 'weixin',
-            'value': '',
-            'hidden': false
-          },
+          // {
+          //   'name': '微信',
+          //   'label': 'weixin',
+          //   'value': '',
+          //   'hidden': false
+          // },
 
           {
             'name': 'instagram',
@@ -248,7 +248,8 @@ export default {
     right: 0;
     text-align: center;
     background-color: rgba(0,0,0,.5);
-    line-height: 30px;
+    line-height: 40px;
+    font-size: 24px;
     color: #FFF
 }
 
@@ -280,8 +281,10 @@ input::-webkit-input-placeholder { /* WebKit browsers */
   background: none;
   -webkit-appearance:none;
   border: none;
-  font-size: 14px;
+  font-size: 18px;
+  line-height: 18px;
   outline:none;
+  width: 100%;
 }
 
 .login_item span {

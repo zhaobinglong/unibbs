@@ -14025,12 +14025,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'label': 'douban',
         'value': '',
         'hidden': false
-      }, {
-        'name': '微信',
-        'label': 'weixin',
-        'value': '',
-        'hidden': false
-      }, {
+      },
+      // {
+      //   'name': '微信',
+      //   'label': 'weixin',
+      //   'value': '',
+      //   'hidden': false
+      // },
+
+      {
         'name': 'instagram',
         'label': 'ins',
         'value': '',
@@ -16828,7 +16831,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   })]) : _vm._e()], 2), _vm._v(" "), _c('div', {
     staticStyle: {
-      "padding": "56px 80px"
+      "padding": "28px 80px 56px 80px"
     }
   }, [_c('span', {
     staticClass: "weui-btn weui-btn_primary",
@@ -16851,11 +16854,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "share_bottom_left_"
-  }, [_c('p', {
-    staticStyle: {
-      "font-size": "12px"
-    }
-  }, [_vm._v("长按识别")]), _vm._v(" "), _c('p', [_vm._v("前往公众号")])])
+  }, [_c('p', [_vm._v("长按识别前往公众号")]), _vm._v(" "), _c('p', [_vm._v("一键生成你的社交名片")])])
 }]}
 
 /***/ }),
@@ -22373,4 +22372,4 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
 
 /***/ })
 ]),[1027]);
-//# sourceMappingURL=app.e13ac6d8109a32e5bfea.js.map
+//# sourceMappingURL=app.da7edee826e25858e549.js.map
