@@ -14109,7 +14109,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         allowTaint: true //允许跨域图片
       };
       __WEBPACK_IMPORTED_MODULE_2_html2canvas___default()(img, opts).then(function (canvas) {
-        _this.qrcode = canvas.toDataURL('image/png', 1.0);
+        _this.qrcode = canvas.toDataURL('image/png', 0);
         _this.loading = false;
         _this.show_form = false;
       });
@@ -16792,7 +16792,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       attrs: {
         "src": 'https://examlab.cn/unibbs-wechat/unibbs/static/app/' + item.label + '.png'
       }
-    }), _vm._v(" "), _c('div', [(!_vm.show_down_load) ? _c('p', {
+    }), _vm._v(" "), _c('div', {
+      staticStyle: {
+        "flex-grow": "1"
+      }
+    }, [(!_vm.show_down_load) ? _c('p', {
       staticStyle: {
         "color": "#303030",
         "font-size": "18px"
@@ -16850,7 +16854,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "qrcode_down_wrap"
   }, [_c('p', [_vm._v("长按图片保存到相册")]), _vm._v(" "), _c('img', {
     staticStyle: {
-      "width": "80%"
+      "width": "80%",
+      "border-radius": "8px"
     },
     attrs: {
       "src": _vm.qrcode
@@ -22377,4 +22382,4 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
 
 /***/ })
 ]),[1027]);
-//# sourceMappingURL=app.252ad7b2df5e656e7e23.js.map
+//# sourceMappingURL=app.425aa093a43a7ae0f197.js.map

@@ -7,7 +7,7 @@
         <!-- 账户列表 -->
         <div class="login_item" v-for="item in accountList" v-if="!item.hidden">
           <img :src="'https://examlab.cn/unibbs-wechat/unibbs/static/app/'+ item.label + '.png'" v-bind:class="{'img_second': show_down_load}">
-          <div>
+          <div style="flex-grow: 1">
             <p style="color: #303030; font-size: 18px;" v-if="!show_down_load">{{ item.name }}</p>
             <input type="" name="" v-model="item.value" placeholder="点击输入账号">
           </div>
@@ -29,7 +29,7 @@
     <!-- 第二页：保存图片 -->
     <div  class="qrcode_down_wrap" v-if="show_down_load">
       <p>长按图片保存到相册</p>
-      <img :src="qrcode" style="width: 80%">
+      <img :src="qrcode" style="width: 80%; border-radius: 8px">
       <!-- <ButtonFooter @clickHandle="clickDown" text="长按图片保存到手机" /> -->
     </div>
     <div v-if="loading" >
@@ -174,7 +174,7 @@ export default {
             allowTaint: true,//允许跨域图片
       }
       html2canvas(img,opts).then(function(canvas) {
-        _this.qrcode = canvas.toDataURL('image/png', 1.0)
+        _this.qrcode = canvas.toDataURL('image/png', 0)
         _this.loading = false
         _this.show_form = false
       });
