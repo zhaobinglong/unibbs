@@ -13990,11 +13990,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
 
+var timeOutEvent = 0; //定时器  
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     ButtonFooter: __WEBPACK_IMPORTED_MODULE_1__components_buttonFooter___default.a
@@ -14068,7 +14068,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     if (localStorage.getItem('userAccounts')) {
       this.form = JSON.parse(localStorage.getItem('userAccounts'));
     }
-    // 
+
+    Sentry.setExtra('data', this.form);
+    Sentry.captureMessage('用户进入首页', 'info');
   },
   methods: {
     clickDown: function clickDown() {
@@ -14106,7 +14108,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         height: h,
         dpi: window.devicePixelRatio,
         useCORS: true, // 【重要】开启跨域配置
-        allowTaint: true //允许跨域图片
+        allowTaint: false //允许跨域图片
       };
       __WEBPACK_IMPORTED_MODULE_2_html2canvas___default()(img, opts).then(function (canvas) {
         _this.qrcode = canvas.toDataURL('image/png', 0);
@@ -14138,6 +14140,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       setTimeout(function (res) {
         _this2.downLoad();
       }, 1000);
+
+      Sentry.setExtra('data', this.form);
+      Sentry.captureMessage('用户点击按钮生成图片', 'info');
+    },
+    gotouchstart: function gotouchstart() {
+      var that = this;
+      clearTimeout(timeOutEvent); //清除定时器
+      timeOutEvent = 0;
+      timeOutEvent = setTimeout(function () {
+        Sentry.setExtra('data', {});
+        Sentry.captureMessage('用户长按保存', 'info');
+        console.log('long press');
+      }, 600); //这里设置定时
+    },
+
+    //手释放，如果在500毫秒内就释放，则取消长按事件，此时可以执行onclick应该执行的事件
+    gotouchend: function gotouchend() {
+      clearTimeout(timeOutEvent);
+      if (timeOutEvent != 0) {
+        //这里写要执行的内容（尤如onclick事件）
+      }
+    },
+
+    //如果手指有移动，则取消所有事件，此时说明用户只是要移动而不是长按 
+    gotouchmove: function gotouchmove() {
+      clearTimeout(timeOutEvent); //清除定时器
+      timeOutEvent = 0;
     }
   },
 
@@ -16826,8 +16855,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         }
       }
     })])]) : _vm._e()
-  }), _vm._v(" "), (_vm.show_down_load) ? _c('div', {
+  }), _vm._v(" "), _c('div', {
     staticClass: "share_bottom",
+    class: {
+      'h0': !_vm.show_down_load
+    },
     staticStyle: {
       "margin": "20px",
       "text-align": "right",
@@ -16841,7 +16873,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "src": __webpack_require__(762)
     }
-  })]) : _vm._e()], 2), _vm._v(" "), _c('div', {
+  })])], 2), _vm._v(" "), _c('div', {
     staticStyle: {
       "padding": "28px 80px 56px 80px"
     }
@@ -16862,6 +16894,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     },
     attrs: {
       "src": _vm.qrcode
+    },
+    on: {
+      "touchstart": _vm.gotouchstart,
+      "touchmove": _vm.gotouchmove,
+      "touchend": _vm.gotouchend
     }
   }), _vm._v(" "), _vm._m(1)]) : _vm._e(), _vm._v(" "), (_vm.loading) ? _c('div', [_c('loading')], 1) : _vm._e()])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -22373,7 +22410,9 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODU
 __WEBPACK_IMPORTED_MODULE_10__sentry_browser__["a" /* init */]({
   dsn: 'https://48b1a394ed81493d9bf784afaecdc894@sentry.io/2069250',
   integrations: [new __WEBPACK_IMPORTED_MODULE_11__sentry_integrations__["a" /* Vue */]({Vue: __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */], attachProps: true})],
+  release: 'my-project-name@' + __webpack_require__.i({"NODE_ENV":"production"}).npm_package_version
 });
+
 
 
 
@@ -22397,4 +22436,4 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
 
 /***/ })
 ]),[1037]);
-//# sourceMappingURL=app.ea36e2b04efdff8bd86b.js.map
+//# sourceMappingURL=app.69446664f83b627bab93.js.map

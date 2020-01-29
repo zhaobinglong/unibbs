@@ -54,7 +54,9 @@ import * as Integrations from '@sentry/integrations';
 Sentry.init({
   dsn: 'https://48b1a394ed81493d9bf784afaecdc894@sentry.io/2069250',
   integrations: [new Integrations.Vue({Vue, attachProps: true})],
+  release: 'my-project-name@' + process.env.npm_package_version
 });
+
 
 import '@/assets/iconfont/iconfont.css';
 import '@/assets/iconfont/iconfont.js';

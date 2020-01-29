@@ -13,7 +13,7 @@
           </div>
         </div>
         <!-- 底部公众号 -->
-        <div style="margin: 20px; text-align: right; padding-bottom: 24px;" class="share_bottom" v-if="show_down_load">
+        <div style="margin: 20px; text-align: right; padding-bottom: 24px;" class="share_bottom" v-bind:class="{'h0': !show_down_load}">
           <div class="share_bottom_left_">
             <p>长按识别前往公众号</p>
             <p>一键生成你的社交名片</p>
@@ -29,7 +29,7 @@
     <!-- 第二页：保存图片 -->
     <div  class="qrcode_down_wrap" v-if="show_down_load">
       <p>长按图片保存，分享至朋友圈</p>
-      <img :src="qrcode" style="width: 80%; border-radius: 8px">
+      <img :src="qrcode" style="width: 80%; border-radius: 8px" @touchstart="gotouchstart" @touchmove="gotouchmove" @touchend="gotouchend">
       <div style="padding: 28px 80px 56px 80px">
         <span href="javascript:;" class="weui-btn weui-btn_primary" >长按图片分享</span>
       </div>
@@ -37,7 +37,6 @@
     <div v-if="loading" >
       <loading ></loading>
     </div>
-    
   </div>
 </template>
 
@@ -45,6 +44,7 @@
 import { sellerRegister, getShareImg } from '@/api/index'
 import ButtonFooter from '@/components/buttonFooter'
 import html2canvas from "html2canvas"
+var timeOutEvent=0;//定时器  
 export default {
   components: {
     ButtonFooter
@@ -128,7 +128,9 @@ export default {
     if(localStorage.getItem('userAccounts')) {
       this.form = JSON.parse(localStorage.getItem('userAccounts'))
     }
-    // 
+
+    Sentry.setExtra('data', this.form)
+    Sentry.captureMessage('用户进入首页', 'info');
   },
   methods:{
     clickDown() {
@@ -198,8 +200,34 @@ export default {
       setTimeout(res => {
         this.downLoad()
       }, 1000);
+
+      Sentry.setExtra('data', this.form)
+      Sentry.captureMessage('用户点击按钮生成图片', 'info');
       
    },
+
+     gotouchstart(){
+     let that = this;
+     clearTimeout(timeOutEvent);//清除定时器
+     timeOutEvent = 0;
+     timeOutEvent = setTimeout(function(){
+       Sentry.setExtra('data', {})
+       Sentry.captureMessage('用户长按保存', 'info');
+       console.log('long press')
+       },600);//这里设置定时
+     },
+        //手释放，如果在500毫秒内就释放，则取消长按事件，此时可以执行onclick应该执行的事件
+    gotouchend(){
+        clearTimeout(timeOutEvent);
+          if(timeOutEvent!=0){
+            //这里写要执行的内容（尤如onclick事件）
+         }
+    },
+    //如果手指有移动，则取消所有事件，此时说明用户只是要移动而不是长按 
+    gotouchmove(){
+         clearTimeout(timeOutEvent);//清除定时器
+         timeOutEvent = 0;
+    },
   },
 
   events: {
@@ -210,6 +238,10 @@ export default {
 <style scope>
 
 @import '../styles/index.css';
+.h0{
+  height: 0;
+  opacity: 0;
+}
 .bk_yellow {
   background-color: #ffdc68;
   border-radius: 8px;
