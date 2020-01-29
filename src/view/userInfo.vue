@@ -30,7 +30,9 @@
     <div  class="qrcode_down_wrap" v-if="show_down_load">
       <p>长按图片保存，分享至朋友圈</p>
       <img :src="qrcode" style="width: 80%; border-radius: 8px">
-      <!-- <ButtonFooter @clickHandle="clickDown" text="长按图片保存到手机" /> -->
+      <div style="padding: 28px 80px 56px 80px">
+        <span href="javascript:;" class="weui-btn weui-btn_primary" >长按图片分享</span>
+      </div>
     </div>
     <div v-if="loading" >
       <loading ></loading>
@@ -90,12 +92,12 @@ export default {
             'value': '',
             'hidden': false
           },
-          // {
-          //   'name': '微信',
-          //   'label': 'weixin',
-          //   'value': '',
-          //   'hidden': false
-          // },
+          {
+            'name': '微信',
+            'label': 'wechat',
+            'value': '',
+            'hidden': false
+          },
 
           {
             'name': 'Instagram',
@@ -244,7 +246,8 @@ export default {
   display: flex;
   background-color: rgba(0,0,0,.5);
   align-items: center;
-   justify-content: center
+  justify-content: center;
+  flex-direction: column;
 }
 .qrcode_down_wrap p{
     position: fixed;

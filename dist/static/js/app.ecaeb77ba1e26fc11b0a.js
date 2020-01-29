@@ -13980,6 +13980,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -14025,15 +14027,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         'label': 'douban',
         'value': '',
         'hidden': false
-      },
-      // {
-      //   'name': '微信',
-      //   'label': 'weixin',
-      //   'value': '',
-      //   'hidden': false
-      // },
-
-      {
+      }, {
+        'name': '微信',
+        'label': 'wechat',
+        'value': '',
+        'hidden': false
+      }, {
         'name': 'Instagram',
         'label': 'ins',
         'value': '',
@@ -16863,11 +16862,22 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "src": _vm.qrcode
     }
-  })]) : _vm._e(), _vm._v(" "), (_vm.loading) ? _c('div', [_c('loading')], 1) : _vm._e()])
+  }), _vm._v(" "), _vm._m(1)]) : _vm._e(), _vm._v(" "), (_vm.loading) ? _c('div', [_c('loading')], 1) : _vm._e()])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "share_bottom_left_"
   }, [_c('p', [_vm._v("长按识别前往公众号")]), _vm._v(" "), _c('p', [_vm._v("一键生成你的社交名片")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticStyle: {
+      "padding": "28px 80px 56px 80px"
+    }
+  }, [_c('span', {
+    staticClass: "weui-btn weui-btn_primary",
+    attrs: {
+      "href": "javascript:;"
+    }
+  }, [_vm._v("长按图片分享")])])
 }]}
 
 /***/ }),
@@ -22385,4 +22395,4 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
 
 /***/ })
 ]),[1027]);
-//# sourceMappingURL=app.bebb58effc5fc76ee53d.js.map
+//# sourceMappingURL=app.ecaeb77ba1e26fc11b0a.js.map
