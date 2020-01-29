@@ -7,7 +7,7 @@
         <!-- 账户列表 -->
         <div class="login_item" v-for="item in accountList" v-if="!item.hidden">
           <img :src="'https://examlab.cn/unibbs-wechat/unibbs/static/app/'+ item.label + '.png'" v-bind:class="{'img_second': show_down_load}">
-          <div style="flex-grow: 1" class="login_item_right">
+          <div  class="login_item_right">
             <label :for=item.label style="color: #303030; font-size: 18px; width: 100%" v-if="!show_down_load">{{ item.name }}</label>
             <input type="" name="" v-model="item.value" placeholder="点击输入账号" :id=item.label>
           </div>
@@ -193,17 +193,17 @@ export default {
 
     // 检查信息，如果有没输入的，则隐藏
     checkQrcode() {
-      this.loading = true;
-      for (var i = 0; i < this.accountList.length; i++) {
-        if (!this.accountList[i].value) {
-          this.accountList[i].hidden = true
-        }
-      }
+      // this.loading = true;
+      // for (var i = 0; i < this.accountList.length; i++) {
+      //   if (!this.accountList[i].value) {
+      //     this.accountList[i].hidden = true
+      //   }
+      // }
       this.show_down_load = true;
       window.scrollTo(0,0);
-      setTimeout(res => {
-        this.downLoad()
-      }, 500);
+      // setTimeout(res => {
+      //   this.downLoad()
+      // }, 500);
       
    },
   },
@@ -280,8 +280,9 @@ input::-webkit-input-placeholder { /* WebKit browsers */
 .login_item_right {
   display: flex;
   align-items: center;
-  flex-direction: column;
-  align-items: left;
+  /*flex-direction: column;*/
+  flex-grow: 1;
+  flex-wrap:  wrap  
 }
 .login_item img {
   width: 50px;
