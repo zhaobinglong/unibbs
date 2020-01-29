@@ -2,8 +2,8 @@
     <transition name="fade">
         <section>
             <div class="loading">
-                <!-- <img width="24px" height="24px" src="../images/timg.gif">
-                <p class="desc">{{title}}</p> -->
+                <!-- <img width="24px" height="24px" src="../images/timg.gif"> -->
+                <!-- <p class="desc">{{title}}</p> -->
                     <span></span>
                     <span></span>
                     <span></span>
@@ -36,7 +36,7 @@ section {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0,0,0,.3);
+    background: rgba(0,0,0,.9);
     z-index: 999;
     display: flex;
     align-items: center;
@@ -45,6 +45,7 @@ section {
 .loading {
     width: 100%;
     text-align: center;
+    background-color: 
     /* flex-direction: column; */
 }
 .loading span{

@@ -1,29 +1,41 @@
 <template>
   <div >
-    <div class="seller" v-if="!show_down_load" >
-      <div class="login_cont" ref="QRcodeSrcImg" style="background: rgb(253,213,94);">
-        <!-- <div class='logo' style="margin-top: 0"> <img src="" alt="" ></div> -->
-
-        <div>
-          <div class="login_item" v-for="item in accountList">
-            <img :src="'https://examlab.cn/unibbs-wechat/unibbs/static/app/'+ item.label + '.png'">
+    <!-- 第一页：输入信息 -->
+    <div  v-if="show_form" >
+      <div class="login_cont" ref="QRcodeSrcImg" v-bind:class="{'bk_yellow': show_down_load}">
+        <h1 v-if="show_down_load">来互粉吧</h1>
+        <!-- 账户列表 -->
+        <div class="login_item" v-for="item in accountList">
+          <img :src="'https://examlab.cn/unibbs-wechat/unibbs/static/app/'+ item.label + '.png'" v-bind:class="{'img_second': show_down_load}">
+          <div>
+            <p style="color: #303030; font-size: 18px;" v-if="!show_down_load">{{ item.name }}</p>
             <input type="" name="" v-model="item.value" placeholder="点击输入账号">
           </div>
-          <div style="margin: 20px">
-            <img src="../assets/app/qrcode.jpg" style="width: 60px; height:60px">
-            <span style="font-size: 12px;">长按识别二维码，一键生成社交名片</span>
-          </div>
         </div>
-        <ButtonFooter @clickHandle="checkQrcode" text="立刻生成" />
+        <!-- 底部公众号 -->
+        <div style="margin: 20px; text-align: right; padding-bottom: 24px;" class="share_bottom" v-if="show_down_load">
+          <div class="share_bottom_left_">
+            <p style="font-size: 12px;">长按识别</p>
+            <p>前往公众号</p>
+          </div>
+          <img src="../assets/app/qrcode.jpg" style="width: 60px; height:60px">
+        </div>
       </div>
-
+      <div style="padding: 56px 80px">
+        <span href="javascript:;" class="weui-btn weui-btn_primary" @click="checkQrcode">生成分享图片</span>
+      </div>
     </div>
+
+    <!-- 第二页：保存图片 -->
     <div  class="qrcode_down_wrap" v-if="show_down_load">
       <p>长按图片保存到相册</p>
       <img :src="qrcode" style="width: 80%">
       <!-- <ButtonFooter @clickHandle="clickDown" text="长按图片保存到手机" /> -->
     </div>
-    <!-- <loading ></loading> -->
+    <div v-if="loading" >
+      <loading ></loading>
+    </div>
+    
   </div>
 </template>
 
@@ -45,10 +57,36 @@ export default {
           kuaishou: '',
           wangyi: ''
         },
+        loading: false,
+        //社交app图标顺序如下：微博、抖音、网易云音乐、知乎、豆瓣、微信、Instagram
         accountList: [
           {
             'name': '微博',
             'label': 'weibo',
+            'value': '',
+            'hidden': false
+          },
+          {
+            'name': '抖音',
+            'label': 'douyin',
+            'value': '',
+            'hidden': false
+          },
+          {
+            'name': '网易',
+            'label': 'wangyi',
+            'value': '',
+            'hidden': false
+          },
+          {
+            'name': '知乎',
+            'label': 'zhihu',
+            'value': '',
+            'hidden': false
+          },
+          {
+            'name': '豆瓣',
+            'label': 'douban',
             'value': '',
             'hidden': false
           },
@@ -58,19 +96,16 @@ export default {
             'value': '',
             'hidden': false
           },
+
           {
-            'name': '豆瓣',
-            'label': 'douban',
+            'name': 'instagram',
+            'label': 'ins',
             'value': '',
             'hidden': false
           },
-          {
-            'name': '豆瓣',
-            'label': 'douban',
-            'value': '',
-            'hidden': false
-          },
+
         ],
+        qrcode: '',
         show_form: true,
         show_qrcode: false,
         show_down_load: false
@@ -140,8 +175,8 @@ export default {
       }
       html2canvas(img,opts).then(function(canvas) {
         _this.qrcode = canvas.toDataURL('image/png', 1.0)
-        _this.show_down_load = true
-        
+        _this.loading = false
+        _this.show_form = false
       });
     },
     
@@ -158,7 +193,13 @@ export default {
 
     // 检查信息，如果有没输入的，则隐藏
     checkQrcode() {
-      this.downLoad()
+      this.loading = true;
+      this.show_down_load = true;
+      window.scrollTo(0,0);
+      setTimeout(res => {
+        this.downLoad()
+      }, 500);
+      
    },
   },
 
@@ -170,7 +211,22 @@ export default {
 <style scope>
 
 @import '../styles/index.css';
-
+.bk_yellow {
+  background-color: #ffdc68;
+  border-radius: 8px;
+}
+.img_second {
+  width: 30px!important;
+  height: 30px!important;
+}
+.login_cont h1 {
+  font-size: 46px;
+  font-weight: bold;
+  letter-spacing: -1.11px;
+  color: #303030;
+  text-align: center;
+  padding: 36px 0;
+}
 .icon {
   width: 2em;
   height: 2em;
@@ -197,52 +253,61 @@ export default {
 }
 
 input::-webkit-input-placeholder { /* WebKit browsers */
-  color: #FFF;
+  /*//color: #FFF;*/
   font-size: 16px;
 }
 
-input::-moz-placeholder { /* Mozilla Firefox 19+ */
-  color: #FFF;
-  font-size: 16px;
-}
-
-input::-ms-input-placeholder { /* Internet Explorer 10+ */
-  color: #FFF;
-} 
 .login_item {
-  margin: 20px;
+  padding: 16px 0;
+  margin-left: 14px;
   margin-right: 0;
-  height: 40px;
   overflow: hidden;
   display: flex;
-  justify-content:space-between;
-  border-bottom: 1px solid #E5E5E5;
-  box-shadow: inset 0 -1px 0 0 #e6e6e6; 
+  font-family: PingFang-SC;
+  color: #303030;
+  /*justify-content:space-between;*/
+  box-shadow: inset 0 -1px 0 0 #868686; 
 }
 .login_item:last-child{
     border-bottom: none;
 }
 .login_item img {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
+  padding-right: 12px;
 }
 .login_item input {
   background: none;
-  line-height: 40px;
   -webkit-appearance:none;
   border: none;
-  font-size: 18px;
-  padding-left: 20px;
+  font-size: 14px;
   outline:none;
-  color: #FFF;
 }
-.login_item input::-webkit-input-placeholder{
-　　color: #FFF;
-}
+
 .login_item span {
   font-style: normal;
   line-height: 40px;
   font-size: 24px;
+}
+.share_bottom {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center
+}
+.share_bottom p {
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 0.21px;
+  text-align: right;
+  color: #303030;
+}
+.share_bottom_left_ {
+  display: flex;
+  align-items: right;
+  flex-direction: column;
+   justify-content: center;
+  height: 60px; 
+  padding-right: 5px;
 }
 </style>
 
