@@ -193,17 +193,17 @@ export default {
 
     // 检查信息，如果有没输入的，则隐藏
     checkQrcode() {
-      // this.loading = true;
-      // for (var i = 0; i < this.accountList.length; i++) {
-      //   if (!this.accountList[i].value) {
-      //     this.accountList[i].hidden = true
-      //   }
-      // }
+      this.loading = true;
+      for (var i = 0; i < this.accountList.length; i++) {
+        if (!this.accountList[i].value) {
+          this.accountList[i].hidden = true
+        }
+      }
       this.show_down_load = true;
       window.scrollTo(0,0);
-      // setTimeout(res => {
-      //   this.downLoad()
-      // }, 500);
+      setTimeout(res => {
+        this.downLoad()
+      }, 500);
       
    },
   },
