@@ -14128,6 +14128,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this2 = this;
 
       this.loading = true;
+      for (var i = 0; i < this.accountList.length; i++) {
+        if (!this.accountList[i].value) {
+          this.accountList[i].hidden = true;
+        }
+      }
       this.show_down_load = true;
       window.scrollTo(0, 0);
       setTimeout(function (res) {
@@ -16778,7 +16783,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       'bk_yellow': _vm.show_down_load
     }
   }, [(_vm.show_down_load) ? _c('h1', [_vm._v("来互粉吧")]) : _vm._e(), _vm._v(" "), _vm._l((_vm.accountList), function(item) {
-    return _c('div', {
+    return (!item.hidden) ? _c('div', {
       staticClass: "login_item"
     }, [_c('img', {
       class: {
@@ -16813,7 +16818,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
           _vm.$set(item, "value", $event.target.value)
         }
       }
-    })])])
+    })])]) : _vm._e()
   }), _vm._v(" "), (_vm.show_down_load) ? _c('div', {
     staticClass: "share_bottom",
     staticStyle: {
@@ -22372,4 +22377,4 @@ new __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */]({
 
 /***/ })
 ]),[1027]);
-//# sourceMappingURL=app.da7edee826e25858e549.js.map
+//# sourceMappingURL=app.252ad7b2df5e656e7e23.js.map

@@ -5,7 +5,7 @@
       <div class="login_cont" ref="QRcodeSrcImg" v-bind:class="{'bk_yellow': show_down_load}">
         <h1 v-if="show_down_load">来互粉吧</h1>
         <!-- 账户列表 -->
-        <div class="login_item" v-for="item in accountList">
+        <div class="login_item" v-for="item in accountList" v-if="!item.hidden">
           <img :src="'https://examlab.cn/unibbs-wechat/unibbs/static/app/'+ item.label + '.png'" v-bind:class="{'img_second': show_down_load}">
           <div>
             <p style="color: #303030; font-size: 18px;" v-if="!show_down_load">{{ item.name }}</p>
@@ -194,6 +194,11 @@ export default {
     // 检查信息，如果有没输入的，则隐藏
     checkQrcode() {
       this.loading = true;
+      for (var i = 0; i < this.accountList.length; i++) {
+        if (!this.accountList[i].value) {
+          this.accountList[i].hidden = true
+        }
+      }
       this.show_down_load = true;
       window.scrollTo(0,0);
       setTimeout(res => {
