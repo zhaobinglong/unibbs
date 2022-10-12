@@ -16,7 +16,7 @@
     "axios": "^0.16.2",
     "babel-preset-es2015": "^6.24.1",
     "chalk": "^1.1.3",
-    "cos-js-sdk-v5": "^0.5.13",
+    "cos-js-sdk-v5": "^1.4.6",
     "fundebug-javascript": "^1.9.0",
     "fundebug-vue": "^0.0.1",
     "html2canvas": "^1.0.0-rc.3",
